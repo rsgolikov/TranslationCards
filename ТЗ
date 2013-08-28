@@ -1,0 +1,65 @@
+Цель проекта: создание ПО, позволяющего вводить данные о словах, которые нужно запомнить и их перевода в ПО iphone, ipad
+(так называемые карточки) и дальнейшее использование карточек для изучения языка.
+
+Для ввода и отображения информации используется 5 вью:
+1. основная вью с отображением текущих настроек и переходом в соответствующие разделы, настройки или работа
+2. настройка профиля
+3. настройки языка, словарей, режима отображения?
+4. форма ввода новых слов в соответствие заявки
+5. форма отображении новых слов в соответствие заявки
+
+В ПО используются классы:
+TCDBController - реализует механизм работы с БД
+содержит следующие методы
+--управление профилем
+(void) addProfile:(string);
+(void) delProfile:(TCProfileModel*);
+(void) updateProfile:(TCProfileModel*);
+(void) setCurrentProfile:(TCProfileModel*);
+(void) setDefaultProfileSettings:(TCProfileModel*);
+(NSArray*) getProfiles;
+--управление словарями
+(void) addDictionary:(string)name;
+(void) delDictionary:(TCDictionaryModel);
+(void) updateDictionary:(TCDictionaryModel);
+(void) setCurrentDictionary:(TCDictionaryModel);
+(NSArray*) getDictionaries;
+--управление перечнем языков
+(void) addLanguage:(string)name;
+(void) delLanguage:(TCLanguageModel);
+(void) updateLanguage:(TCLanguageModel);
+(NSArray*) getLanguages;
+--управление перечнем слов
+(void) addWord:(string)word withTranslate:(string) withOtherForms:(string);
+(void) delWord:(TCWordModel);
+(void) updateWord:(TCWordModel);
+(NSArray*) getWords;
+
+TCWLController - получает перечень слов, при необходимости их обрабатывает (сортировка, фильтр)
+(TCWordModel*) getNextWord;
+(TCWordModel*) getPrevWord
+
+структура БД
+1. таблица profiles - таблица пользователей программы на одном устройстве
+id - integer16 - уникальный идетификатор
+name - string - наименование профиля для визуального отображения
+isCurrent - bool - признка текущего профиля
+id_global - integer32 - уникальный идентификатор если используется синхронизация между несколькими устройствами через сайт
+
+2. таблица languages - перечень используемых в программе языков для удобства восприятия
+id - integer16 - уникальный идентификатор
+name - string - наименование языка
+3. таблица dictionaries - список условных словарей (наборов слов изучаемых языков)
+id - integer16 - уникальный идетификатор
+id_profile - integer16 - идетификатор профиля к которому относится словарь
+id_original_language - идентификатор языка
+id_translation_language - идентификатор языка перевода
+name - string - наименование словаря
+4. таблица words - перечень слов для изучения 
+id - integer16 уникальный идентификатор - не нужен видимо!
+id_dictionary - идентификатор словаря к которому относится слово
+word - string - собственно изучаемое слово
+translation - string - перевод слова
+otherForms - string - другие формы слова если слово "неправильное"
+isMastered - bool - отметка, что слово изучено
+countShows - integer16 - количество показов
