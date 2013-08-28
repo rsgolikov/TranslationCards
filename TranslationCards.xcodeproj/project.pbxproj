@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */; };
 		D0FDD6F117CE01C300C7D4F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */; };
 		D0FDD6F317CE01C300C7D4F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */; };
 		D0FDD6F517CE01C300C7D4F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F417CE01C300C7D4F4 /* CoreGraphics.framework */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8432490317CE5FAC00E26173 /* TCData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TCData.xcdatamodel; sourceTree = "<group>"; };
 		D0FDD6ED17CE01C300C7D4F4 /* TranslationCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslationCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +97,7 @@
 		D0FDD6E417CE01C300C7D4F4 = {
 			isa = PBXGroup;
 			children = (
+				8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */,
 				D0FDD6F617CE01C300C7D4F4 /* TranslationCards */,
 				D0FDD72317CE01C300C7D4F4 /* TranslationCardsTests */,
 				D0FDD6EF17CE01C300C7D4F4 /* Frameworks */,
@@ -290,6 +293,7 @@
 				D0FDD70A17CE01C300C7D4F4 /* TCRootViewController.m in Sources */,
 				D0FDD70D17CE01C300C7D4F4 /* TCDataViewController.m in Sources */,
 				D0FDD71017CE01C300C7D4F4 /* TCModelController.m in Sources */,
+				8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +484,7 @@
 				D0FDD73017CE01C300C7D4F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0FDD73117CE01C300C7D4F4 /* Build configuration list for PBXNativeTarget "TranslationCardsTests" */ = {
 			isa = XCConfigurationList;
@@ -488,8 +493,22 @@
 				D0FDD73317CE01C300C7D4F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8432490317CE5FAC00E26173 /* TCData.xcdatamodel */,
+			);
+			currentVersion = 8432490317CE5FAC00E26173 /* TCData.xcdatamodel */;
+			path = TCData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D0FDD6E517CE01C300C7D4F4 /* Project object */;
 }
