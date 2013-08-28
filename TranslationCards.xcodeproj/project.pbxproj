@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */; };
+		8432490717CE659400E26173 /* TCDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432490617CE659400E26173 /* TCDBController.m */; };
+		8432490A17CE667800E26173 /* Words.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432490917CE667800E26173 /* Words.m */; };
+		8432490D17CE668F00E26173 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432490C17CE668F00E26173 /* Profile.m */; };
+		8432491017CE66A100E26173 /* Languages.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432490F17CE66A100E26173 /* Languages.m */; };
+		8432491317CE66AC00E26173 /* Dictionaries.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432491217CE66AC00E26173 /* Dictionaries.m */; };
+		8432491517CE68A600E26173 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432491417CE68A600E26173 /* CoreData.framework */; };
 		D0FDD6F117CE01C300C7D4F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */; };
 		D0FDD6F317CE01C300C7D4F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */; };
 		D0FDD6F517CE01C300C7D4F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F417CE01C300C7D4F4 /* CoreGraphics.framework */; };
@@ -41,6 +47,17 @@
 
 /* Begin PBXFileReference section */
 		8432490317CE5FAC00E26173 /* TCData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TCData.xcdatamodel; sourceTree = "<group>"; };
+		8432490517CE659400E26173 /* TCDBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDBController.h; sourceTree = "<group>"; };
+		8432490617CE659400E26173 /* TCDBController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDBController.m; sourceTree = "<group>"; };
+		8432490817CE667800E26173 /* Words.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Words.h; sourceTree = "<group>"; };
+		8432490917CE667800E26173 /* Words.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Words.m; sourceTree = "<group>"; };
+		8432490B17CE668F00E26173 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		8432490C17CE668F00E26173 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		8432490E17CE66A100E26173 /* Languages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Languages.h; sourceTree = "<group>"; };
+		8432490F17CE66A100E26173 /* Languages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Languages.m; sourceTree = "<group>"; };
+		8432491117CE66AC00E26173 /* Dictionaries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dictionaries.h; sourceTree = "<group>"; };
+		8432491217CE66AC00E26173 /* Dictionaries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dictionaries.m; sourceTree = "<group>"; };
+		8432491417CE68A600E26173 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D0FDD6ED17CE01C300C7D4F4 /* TranslationCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslationCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8432491517CE68A600E26173 /* CoreData.framework in Frameworks */,
 				D0FDD6F117CE01C300C7D4F4 /* UIKit.framework in Frameworks */,
 				D0FDD6F317CE01C300C7D4F4 /* Foundation.framework in Frameworks */,
 				D0FDD6F517CE01C300C7D4F4 /* CoreGraphics.framework in Frameworks */,
@@ -97,7 +115,18 @@
 		D0FDD6E417CE01C300C7D4F4 = {
 			isa = PBXGroup;
 			children = (
+				8432491417CE68A600E26173 /* CoreData.framework */,
+				8432491117CE66AC00E26173 /* Dictionaries.h */,
+				8432491217CE66AC00E26173 /* Dictionaries.m */,
+				8432490E17CE66A100E26173 /* Languages.h */,
+				8432490F17CE66A100E26173 /* Languages.m */,
+				8432490B17CE668F00E26173 /* Profile.h */,
+				8432490C17CE668F00E26173 /* Profile.m */,
+				8432490517CE659400E26173 /* TCDBController.h */,
+				8432490617CE659400E26173 /* TCDBController.m */,
 				8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */,
+				8432490817CE667800E26173 /* Words.h */,
+				8432490917CE667800E26173 /* Words.m */,
 				D0FDD6F617CE01C300C7D4F4 /* TranslationCards */,
 				D0FDD72317CE01C300C7D4F4 /* TranslationCardsTests */,
 				D0FDD6EF17CE01C300C7D4F4 /* Frameworks */,
@@ -294,6 +323,11 @@
 				D0FDD70D17CE01C300C7D4F4 /* TCDataViewController.m in Sources */,
 				D0FDD71017CE01C300C7D4F4 /* TCModelController.m in Sources */,
 				8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */,
+				8432490717CE659400E26173 /* TCDBController.m in Sources */,
+				8432490A17CE667800E26173 /* Words.m in Sources */,
+				8432490D17CE668F00E26173 /* Profile.m in Sources */,
+				8432491017CE66A100E26173 /* Languages.m in Sources */,
+				8432491317CE66AC00E26173 /* Dictionaries.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Dictionaries" syncable="YES">
+    <entity name="Dictionaries" representedClassName="Dictionaries" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_original_language" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_profile" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_translation_language" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profile" inverseName="relationship" inverseEntity="Profile" syncable="YES"/>
-        <relationship name="relationship1" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Words" inverseName="relationship" inverseEntity="Words" syncable="YES"/>
     </entity>
-    <entity name="Languages" syncable="YES">
+    <entity name="Languages" representedClassName="Languages" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Profile" syncable="YES">
+    <entity name="Profile" representedClassName="Profile" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_global" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="relationship" inverseEntity="Dictionaries" syncable="YES"/>
     </entity>
-    <entity name="Words" syncable="YES">
+    <entity name="Words" representedClassName="Words" syncable="YES">
         <attribute name="countShows" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_dictionary" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -28,12 +25,11 @@
         <attribute name="otherForms" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="relationship" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="relationship1" inverseEntity="Dictionaries" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Words" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="Dictionaries" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Profile" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Words" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Dictionaries" positionX="160" positionY="192" width="128" height="120"/>
         <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
     </elements>
 </model>
