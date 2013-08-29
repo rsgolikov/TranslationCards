@@ -1,8 +1,8 @@
 //
-//  Languages.h
+//  TCLanguagesModel.h
 //  TranslationCards
 //
-//  Created by Баз Светик on 28.08.13.
+//  Created by user6230 on 8/29/13.
 //  Copyright (c) 2013 SS United. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Languages : NSManagedObject
+@interface TCLanguagesModel : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSString * name;
 
 @end
