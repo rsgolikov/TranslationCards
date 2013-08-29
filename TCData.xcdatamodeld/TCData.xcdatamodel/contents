@@ -9,7 +9,7 @@
         <relationship name="originalLanguage" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Languages" syncable="YES"/>
         <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profiles" inverseName="dictionaries" inverseEntity="Profiles" syncable="YES"/>
         <relationship name="translationLanguage" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Languages" syncable="YES"/>
-        <relationship name="words" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Words" inverseName="dictionary" inverseEntity="Words" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Words" inverseName="dictionary" inverseEntity="Words" syncable="YES"/>
     </entity>
     <entity name="Languages" representedClassName="TCLanguagesModel" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -30,12 +30,12 @@
         <attribute name="otherForms" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dictionary" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="words" inverseEntity="Dictionaries" syncable="YES"/>
+        <relationship name="dictionary" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="words" inverseEntity="Dictionaries" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dictionaries" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Languages" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Profiles" positionX="160" positionY="192" width="128" height="120"/>
-        <element name="Words" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="Dictionaries" positionX="36" positionY="234" width="128" height="178"/>
+        <element name="Languages" positionX="135" positionY="-18" width="128" height="75"/>
+        <element name="Profiles" positionX="-65" positionY="-36" width="128" height="120"/>
+        <element name="Words" positionX="-270" positionY="9" width="128" height="163"/>
     </elements>
 </model>
