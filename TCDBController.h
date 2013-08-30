@@ -7,38 +7,46 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Dictionaries.h"
-#import "Profile.h"
-#import "Words.h"
-#import "Languages.h"
+#import "TCDictionariesModel.h"
+#import "TCLanguagesModel.h"
+#import "TCProfileModel.h"
+#import "TCWordsModel.h"
 
-@interface TCDBController : NSObject
+@interface TCDBController : NSObject{
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSManagedObjectModel *managedObjectModel;
+    NSManagedObjectContext *managedObjectContext;
+    
+}
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 //управление профилем
 - (void)addProfile:(NSString *)name;
-- (void)delProfile:(Profile*)profile;
-- (void)updateProfile:(Profile*)profile;
-- (void)setCurrentProfile:(Profile*)profile;
-- (void)setDefaultProfileSettings:(Profile*)profile;
+- (void)delProfile:(TCProfileModel*)profile;
+- (void)updateProfile:(TCProfileModel*)profile;
+- (void)setCurrentProfile:(TCProfileModel*)profile;
+- (void)setDefaultProfileSettings:(TCProfileModel*)profile;
 - (NSArray*)getProfiles;
 
 //управление словарями
 - (void)addDictionary:(NSString*)name;
-- (void)delDictionary:(Dictionaries*)dictionary;
-- (void)updateDictionary:(Dictionaries*)dictionary;
-- (void)setCurrentDictionary:(Dictionaries*)dictionary;
+- (void)delDictionary:(TCDictionariesModel*)dictionary;
+- (void)updateDictionary:(TCDictionariesModel*)dictionary;
+- (void)setCurrentDictionary:(TCDictionariesModel*)dictionary;
 - (NSArray*)getDictionaries;
 
 //управление перечнем языков
 - (void)addLanguage:(NSString*)name;
-- (void)delLanguage:(Languages*)language;
-- (void)updateLanguage:(Languages*)language;
+- (void)delLanguage:(TCLanguagesModel*)language;
+- (void)updateLanguage:(TCLanguagesModel*)language;
 - (NSArray*)getLanguages;
 
 //управление перечнем слов
 - (void)addWord:(NSString*)word withTranslate:(NSString*)translate withOtherForms:(NSString*)form;
-- (void)delWord:(Words*)word;
-- (void)updateWord:(Words*)word;
+- (void)delWord:(TCWordsModel*)word;
+- (void)updateWord:(TCWordsModel*)word;
 - (NSArray*)getWords;
 
 @end
