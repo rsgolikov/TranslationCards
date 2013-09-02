@@ -2,7 +2,7 @@
 //  TCWordsModel.m
 //  TranslationCards
 //
-//  Created by user6230 on 8/29/13.
+//  Created by Баз Светик on 02.09.13.
 //  Copyright (c) 2013 SS United. All rights reserved.
 //
 
@@ -13,8 +13,6 @@
 @implementation TCWordsModel
 
 @dynamic countShows;
-@dynamic id;
-@dynamic id_dictionary;
 @dynamic isMastered;
 @dynamic otherForms;
 @dynamic translation;

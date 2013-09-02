@@ -11,11 +11,11 @@
 		8432490717CE659400E26173 /* TCDBController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432490617CE659400E26173 /* TCDBController.m */; };
 		8432491517CE68A600E26173 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8432491417CE68A600E26173 /* CoreData.framework */; };
 		8432491817CE6A4500E26173 /* TCWLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8432491717CE6A4500E26173 /* TCWLController.m */; };
+		84B83B0317D4E7E300E754AD /* TCLanguagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0217D4E7E300E754AD /* TCLanguagesModel.m */; };
+		84B83B0617D4E7E400E754AD /* TCProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0517D4E7E400E754AD /* TCProfileModel.m */; };
+		84B83B0917D4E7E400E754AD /* TCWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0817D4E7E400E754AD /* TCWordsModel.m */; };
+		84B83B0C17D4E7E400E754AD /* TCDictionariesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0B17D4E7E400E754AD /* TCDictionariesModel.m */; };
 		D0A95EAF17CF533B000E54AC /* ТЗ in Resources */ = {isa = PBXBuildFile; fileRef = D0A95EAE17CF533B000E54AC /* ТЗ */; };
-		D0A95EB817CF53BF000E54AC /* TCLanguagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A95EB717CF53BF000E54AC /* TCLanguagesModel.m */; };
-		D0A95EC717CF5583000E54AC /* TCDictionariesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A95EC617CF5583000E54AC /* TCDictionariesModel.m */; };
-		D0A95ECA17CF5583000E54AC /* TCProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A95EC917CF5583000E54AC /* TCProfileModel.m */; };
-		D0A95ECD17CF5583000E54AC /* TCWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A95ECC17CF5583000E54AC /* TCWordsModel.m */; };
 		D0FDD6F117CE01C300C7D4F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */; };
 		D0FDD6F317CE01C300C7D4F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */; };
 		D0FDD6F517CE01C300C7D4F4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F417CE01C300C7D4F4 /* CoreGraphics.framework */; };
@@ -54,15 +54,15 @@
 		8432491417CE68A600E26173 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8432491617CE6A4500E26173 /* TCWLController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TCWLController.h; path = ../TCWLController.h; sourceTree = "<group>"; };
 		8432491717CE6A4500E26173 /* TCWLController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TCWLController.m; path = ../TCWLController.m; sourceTree = "<group>"; };
+		84B83B0117D4E7E300E754AD /* TCLanguagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLanguagesModel.h; sourceTree = "<group>"; };
+		84B83B0217D4E7E300E754AD /* TCLanguagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLanguagesModel.m; sourceTree = "<group>"; };
+		84B83B0417D4E7E400E754AD /* TCProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileModel.h; sourceTree = "<group>"; };
+		84B83B0517D4E7E400E754AD /* TCProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileModel.m; sourceTree = "<group>"; };
+		84B83B0717D4E7E400E754AD /* TCWordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWordsModel.h; sourceTree = "<group>"; };
+		84B83B0817D4E7E400E754AD /* TCWordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWordsModel.m; sourceTree = "<group>"; };
+		84B83B0A17D4E7E400E754AD /* TCDictionariesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDictionariesModel.h; sourceTree = "<group>"; };
+		84B83B0B17D4E7E400E754AD /* TCDictionariesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDictionariesModel.m; sourceTree = "<group>"; };
 		D0A95EAE17CF533B000E54AC /* ТЗ */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ТЗ"; sourceTree = SOURCE_ROOT; };
-		D0A95EB617CF53BF000E54AC /* TCLanguagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCLanguagesModel.h; sourceTree = "<group>"; };
-		D0A95EB717CF53BF000E54AC /* TCLanguagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCLanguagesModel.m; sourceTree = "<group>"; };
-		D0A95EC517CF5583000E54AC /* TCDictionariesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDictionariesModel.h; sourceTree = "<group>"; };
-		D0A95EC617CF5583000E54AC /* TCDictionariesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDictionariesModel.m; sourceTree = "<group>"; };
-		D0A95EC817CF5583000E54AC /* TCProfileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCProfileModel.h; sourceTree = "<group>"; };
-		D0A95EC917CF5583000E54AC /* TCProfileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCProfileModel.m; sourceTree = "<group>"; };
-		D0A95ECB17CF5583000E54AC /* TCWordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWordsModel.h; sourceTree = "<group>"; };
-		D0A95ECC17CF5583000E54AC /* TCWordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWordsModel.m; sourceTree = "<group>"; };
 		D0FDD6ED17CE01C300C7D4F4 /* TranslationCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslationCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -121,14 +121,14 @@
 			isa = PBXGroup;
 			children = (
 				8432490217CE5FAC00E26173 /* TCData.xcdatamodeld */,
-				D0A95ECB17CF5583000E54AC /* TCWordsModel.h */,
-				D0A95ECC17CF5583000E54AC /* TCWordsModel.m */,
-				D0A95EC817CF5583000E54AC /* TCProfileModel.h */,
-				D0A95EC917CF5583000E54AC /* TCProfileModel.m */,
-				D0A95EC517CF5583000E54AC /* TCDictionariesModel.h */,
-				D0A95EC617CF5583000E54AC /* TCDictionariesModel.m */,
-				D0A95EB617CF53BF000E54AC /* TCLanguagesModel.h */,
-				D0A95EB717CF53BF000E54AC /* TCLanguagesModel.m */,
+				84B83B0A17D4E7E400E754AD /* TCDictionariesModel.h */,
+				84B83B0B17D4E7E400E754AD /* TCDictionariesModel.m */,
+				84B83B0717D4E7E400E754AD /* TCWordsModel.h */,
+				84B83B0817D4E7E400E754AD /* TCWordsModel.m */,
+				84B83B0417D4E7E400E754AD /* TCProfileModel.h */,
+				84B83B0517D4E7E400E754AD /* TCProfileModel.m */,
+				84B83B0117D4E7E300E754AD /* TCLanguagesModel.h */,
+				84B83B0217D4E7E300E754AD /* TCLanguagesModel.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -342,10 +342,10 @@
 				8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */,
 				8432490717CE659400E26173 /* TCDBController.m in Sources */,
 				8432491817CE6A4500E26173 /* TCWLController.m in Sources */,
-				D0A95EB817CF53BF000E54AC /* TCLanguagesModel.m in Sources */,
-				D0A95EC717CF5583000E54AC /* TCDictionariesModel.m in Sources */,
-				D0A95ECA17CF5583000E54AC /* TCProfileModel.m in Sources */,
-				D0A95ECD17CF5583000E54AC /* TCWordsModel.m in Sources */,
+				84B83B0317D4E7E300E754AD /* TCLanguagesModel.m in Sources */,
+				84B83B0617D4E7E400E754AD /* TCProfileModel.m in Sources */,
+				84B83B0917D4E7E400E754AD /* TCWordsModel.m in Sources */,
+				84B83B0C17D4E7E400E754AD /* TCDictionariesModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
