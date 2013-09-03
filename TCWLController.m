@@ -7,16 +7,16 @@
 //
 
 #import "TCWLController.h"
-#import "Words.h"
+#import "TCWordsModel.h"
 
 @implementation TCWLController
 
-- (Words*) getNextWord{
-    Words* word = [[Words alloc] init];
+- (TCWordsModel*) getNextWord{
+    TCWordsModel* word = [[TCWordsModel alloc] init];
     return word;
 }
-- (Words*) getPrevWord{
-    Words* word = [[Words alloc] init];
+- (TCWordsModel*) getPrevWord{
+    TCWordsModel* word = [[TCWordsModel alloc] init];
     return word;
 }
 

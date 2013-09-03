@@ -11,6 +11,7 @@
 #import "TCModelController.h"
 
 #import "TCDataViewController.h"
+#import "TCDBController.h"
 
 @interface TCRootViewController ()
 @property (readonly, strong, nonatomic) TCModelController *modelController;
@@ -48,6 +49,11 @@
 
     // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
     self.view.gestureRecognizers = self.pageViewController.gestureRecognizers;
+   
+    TCDBController *tcdbc = [[TCDBController alloc] init];
+    [tcdbc addProfile:@"onemore"];
+    NSMutableArray *arr = [tcdbc getProfiles];
+    
 }
 
 - (void)didReceiveMemoryWarning

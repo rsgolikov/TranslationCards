@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Words.h"
+#import "TCWordsModel.h"
 
 @interface TCWLController : NSObject
-- (Words*) getNextWord;
-- (Words*) getPrevWord;
+- (TCWordsModel*) getNextWord;
+- (TCWordsModel*) getPrevWord;
 @end

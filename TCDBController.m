@@ -50,44 +50,60 @@
     return basePath;
 }
 
-- (int)profileGetNewID{
+//управление профилем
+//однинаковые имена = один профиль. соответственно при добавлении имени проверяем на наличие и выдаем или профиль или nil 
+- (TCProfileModel*)getProfileWithName:(NSString *)name{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [request setSortDescriptors:sortDescriptors];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name = '%@' ", name]];
+    [request setPredicate:pred];
+
+    NSError *error = nil;
+    TCProfileModel *fetchResult = nil;
+    fetchResult = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
+    return fetchResult;
+}
+//сброс галочки текущий профиль при смене или добавлении профиля возможно процедуру переделаем? так как она долна стать частью добавления
+- (void)clearIsCurrentProfile{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"isCurrent = 1"]];
+    [request setPredicate:pred];
     NSError *error = nil;
     NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    int profile_id = 0;
-    if (mutableFetchResults == nil) {
-        profile_id = 1;
-    } else {
-        profile_id=1;
-        for(int i = 0; i<[mutableFetchResults count]; i++){
-            TCProfileModel *tcpfm = (TCProfileModel *)[mutableFetchResults objectAtIndex:i];
-            int current_id = (int)[tcpfm id];
-            if (profile_id != current_id){
-                break;
-            } else {
-                profile_id++;
-            }
-        }
+    for (NSManagedObject *obj in mutableFetchResults) {
+        [obj setValue:@"0" forKey:@"isCurrent"];
     }
-    return profile_id;
-}
-
-//управление профилем
-- (void)addProfile:(NSString *)name{
-    TCProfileModel *tcpfm = (TCProfileModel*)[NSEntityDescription insertNewObjectForEntityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
-    [tcpfm setName:name];
-    [tcpfm setId:[NSNumber numberWithInt:self.profileGetNewID]];
-    NSError *error = nil;
+    //cсохранения быть не должно. сброс галочки часть процесса установки галочки
     if (![[self managedObjectContext] save:&error]) {
         // Handle the error.
+        NSLog(@"clear isChecked fail: %@", error);
     }
 }
+//собственно добавление профиля
+- (void)addProfile:(NSString *)name{
+    TCProfileModel *profile=[self getProfileWithName:name];
+    if (profile==nil){
+        [self clearIsCurrentProfile];
+        TCProfileModel *tcpfm = (TCProfileModel*)[NSEntityDescription insertNewObjectForEntityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
+        [tcpfm setName:name];
+        [tcpfm setIsCurrent:[NSNumber numberWithInt:1]];
+        self.currentProfile = tcpfm;
+        NSError *error = nil;
+        if (![[self managedObjectContext] save:&error]) {
+            // Handle the error.
+            NSLog(@"Profile add error: %@", error);
+        }
+        NSLog(@"Profile add: %@", name);
+    } else {
+        NSLog(@"Profile name %@ found one", name);
+    }
+}
+
 - (void)delProfile:(TCProfileModel*)profile{
+    //переделать на уделение по имени
     NSManagedObject *eventToDelete = profile;
     [[self managedObjectContext] deleteObject:eventToDelete];
     NSError *error = nil;
@@ -97,6 +113,7 @@
 
 }
 - (void)updateProfile:(TCProfileModel*)profile{
+    /*
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -109,7 +126,6 @@
 
     if ([queryArray count] > 0){
         TCProfileModel *tcpfm = [queryArray objectAtIndex:0];
-        tcpfm.id_global=profile.id_global;
         tcpfm.name = profile.name;
         tcpfm.isCurrent = profile.isCurrent;
         NSError *error = nil;
@@ -117,8 +133,10 @@
             // Handle the error.
         }
     }
+     */
 }
 - (void)setCurrentProfile:(TCProfileModel*)profile;{
+    /*
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -152,11 +170,14 @@
             // Handle the error.
         }
     }
+     */
     
 }
+
 - (void)setDefaultProfileSettings:(TCProfileModel*)profile{
   //ощущение что делаю через одно место.. пропустим надо обсудить
 }
+
 - (NSArray*)getProfiles{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
@@ -169,7 +190,9 @@
     if (mutableFetchResults == nil) {
         // Handle the error.
     }
-    return [[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
+    NSLog(@"Profile count: %d", mutableFetchResults.count);
+    return mutableFetchResults;
+    //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
     mutableFetchResults = nil;
 }
 

@@ -22,6 +22,9 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic, retain) TCProfileModel *currentProfile;
+@property (nonatomic, retain) TCDictionariesModel *currentDictionary;
+
 //управление профилем
 - (void)addProfile:(NSString *)name;
 - (void)delProfile:(TCProfileModel*)profile;
