@@ -56,7 +56,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
     [request setEntity:entity];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"name = '%@' ", name]];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"name = '%@' ", name];
     [request setPredicate:pred];
 
     NSError *error = nil;
@@ -64,32 +64,13 @@
     fetchResult = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
     return fetchResult;
 }
-//сброс галочки текущий профиль при смене или добавлении профиля возможно процедуру переделаем? так как она долна стать частью добавления
-- (void)clearIsCurrentProfile{
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
-    [request setEntity:entity];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"isCurrent = 1"]];
-    [request setPredicate:pred];
-    NSError *error = nil;
-    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    for (NSManagedObject *obj in mutableFetchResults) {
-        [obj setValue:@"0" forKey:@"isCurrent"];
-    }
-    //cсохранения быть не должно. сброс галочки часть процесса установки галочки
-    if (![[self managedObjectContext] save:&error]) {
-        // Handle the error.
-        NSLog(@"clear isChecked fail: %@", error);
-    }
-}
 //собственно добавление профиля
 - (void)addProfile:(NSString *)name{
     TCProfileModel *profile=[self getProfileWithName:name];
     if (profile==nil){
-        [self clearIsCurrentProfile];
         TCProfileModel *tcpfm = (TCProfileModel*)[NSEntityDescription insertNewObjectForEntityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
         [tcpfm setName:name];
-        [tcpfm setIsCurrent:[NSNumber numberWithInt:1]];
+        [tcpfm setIsCurrent:[NSNumber numberWithBool:true]];
         self.currentProfile = tcpfm;
         NSError *error = nil;
         if (![[self managedObjectContext] save:&error]) {
@@ -104,8 +85,7 @@
 
 - (void)delProfile:(TCProfileModel*)profile{
     //переделать на уделение по имени
-    NSManagedObject *eventToDelete = profile;
-    [[self managedObjectContext] deleteObject:eventToDelete];
+    [[self managedObjectContext] deleteObject:profile];
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
         // Handle the error.
