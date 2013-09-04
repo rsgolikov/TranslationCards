@@ -93,69 +93,49 @@
 
 }
 - (void)updateProfile:(TCProfileModel*)profile{
-    /*
+    //обновление только текущего профиля или нужно передавать два профиля в процедуру/ не нужно только текущего/
+    if (self.currentProfile == nil) return;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles"
                                               inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"self == %@", self.currentProfile];
+    [request setPredicate:predicate];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id = %d", (int)profile.id]];
-    [request setPredicate:pred];
-    
-    NSArray *queryArray=[self.managedObjectContext executeFetchRequest:request error:nil];
-
-    if ([queryArray count] > 0){
-        TCProfileModel *tcpfm = [queryArray objectAtIndex:0];
-        tcpfm.name = profile.name;
-        tcpfm.isCurrent = profile.isCurrent;
-        NSError *error = nil;
-        if (![[self managedObjectContext] save:&error]) {
-            // Handle the error.
+    NSError *error;
+    NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+    if (array != nil) { //it's true always
+        for (NSManagedObject *obj in array) {
+               [obj setValue:profile.name forKey:@"name"];
         }
     }
-     */
+    if (![[self managedObjectContext] save:&error]) {
+        // Handle the error.
+    }
 }
 - (void)setCurrentProfile:(TCProfileModel*)profile;{
-    /*
+    if (self.currentProfile == nil) return;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles"
                                               inManagedObjectContext:self.managedObjectContext];
     [request setEntity:entity];
+    //для профиля нам по сути нужно только имя но можно и объект
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"self == %@", profile];
+    [request setPredicate:predicate];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"isCurrent = 1"]];
-    [request setPredicate:pred];
-    
-    NSArray *queryArray=[self.managedObjectContext executeFetchRequest:request error:nil];
-    if ([queryArray count] > 0){
-        TCProfileModel *tcpfm = [queryArray objectAtIndex:0];
-        tcpfm.isCurrent = [NSNumber numberWithInt:0];
-        NSError *error = nil;
-        if (![[self managedObjectContext] save:&error]) {
-            // Handle the error.
+    NSError *error;
+    NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+    if (array != nil) { //it's true always
+        for (NSManagedObject *obj in array) {
+            //интересно сработает сбос признака у остальных в классе профиля?
+            [obj setValue:[NSNumber numberWithBool:true] forKey:@"setIsCurrent"];
         }
     }
-    pred = nil;
-    queryArray = nil;
-    
-    NSPredicate *pred2 = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"id = %d", (int)profile.id]];
-    [request setPredicate:pred2];
-    
-    NSArray *queryArray2=[self.managedObjectContext executeFetchRequest:request error:nil];
-    
-    if ([queryArray2 count] > 0){
-        TCProfileModel *tcpfm = [queryArray2 objectAtIndex:0];
-        tcpfm.isCurrent = [NSNumber numberWithInt:0];
-        NSError *error = nil;
-        if (![[self managedObjectContext] save:&error]) {
-            // Handle the error.
-        }
+    if (![[self managedObjectContext] save:&error]) {
+        // Handle the error.
     }
-     */
-    
-}
-
-- (void)setDefaultProfileSettings:(TCProfileModel*)profile{
-  //ощущение что делаю через одно место.. пропустим надо обсудить
 }
 
 - (NSArray*)getProfiles{
@@ -177,21 +157,92 @@
 }
 
 //управление словарями
-- (void)addDictionary:(NSString*)name{
+
+- (TCProfileModel*)getDictionaryWithName:(NSString *)name{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"name = '%@' ", name];
+    [request setPredicate:pred];
     
+    NSError *error = nil;
+    TCProfileModel *fetchResult = nil;
+    fetchResult = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
+    return fetchResult;
+}
+
+- (void)addDictionary:(NSString*)name{
+    TCProfileModel *profile=[self getProfileWithName:name];
+    if (profile==nil){
+        TCDictionariesModel *tcdm = (TCDictionariesModel*)[NSEntityDescription insertNewObjectForEntityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
+        [tcdm setName:name];
+        [tcdm setProfile:self.currentProfile];
+        self.currentDictionary = tcdm;
+        NSError *error = nil;
+        if (![[self managedObjectContext] save:&error]) {
+            // Handle the error.
+            NSLog(@"Dictionary add error: %@", error);
+        }
+        NSLog(@"Dictionary add: %@", name);
+    } else {
+        NSLog(@"Dictionary name %@ found one", name);
+    }
 }
 - (void)delDictionary:(TCDictionariesModel*)dictionary{
-    
+    //переделать на уделение по имени
+    [[self managedObjectContext] deleteObject:dictionary];
+    NSError *error = nil;
+    if (![[self managedObjectContext] save:&error]) {
+        // Handle the error.
+    }
 }
 - (void)updateDictionary:(TCDictionariesModel*)dictionary{
+    //обновление только текущего профиля или нужно передавать два профиля в процедуру/ не нужно только текущего/
+    if (self.currentProfile == nil) return;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dictionaries"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [request setEntity:entity];
+    NSPredicate *predicate =
+    [NSPredicate predicateWithFormat:@"self == %@", self.currentProfile];
+    [request setPredicate:predicate];
     
+    NSError *error;
+    NSArray *array = [managedObjectContext executeFetchRequest:request error:&error];
+    if (array != nil) { //it's true always
+        for (NSManagedObject *obj in array) {
+            [obj setValue:dictionary.name forKey:@"name"];
+            [obj setValue:dictionary.originalLanguage forKey:@"originalLanguage"];
+            [obj setValue:dictionary.translationLanguage forKey:@"translationLanguage"];
+        }
+    }
+    if (![[self managedObjectContext] save:&error]) {
+        // Handle the error.
+    }
 }
+
 - (void)setCurrentDictionary:(TCDictionariesModel*)dictionary{
-    
+    self.currentDictionary = dictionary;
 }
+
 - (NSArray*)getDictionaries{
-    NSArray *dummy = [[NSArray alloc] initWithObjects:@"getDictionaries", nil];
-    return dummy;
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"profile = %@ ", self.currentProfile];
+    [request setPredicate:pred];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    NSError *error = nil;
+    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
+    if (mutableFetchResults == nil) {
+        // Handle the error.
+    }
+    NSLog(@"Dictionaries count: %d of profile name %@", mutableFetchResults.count, self.currentProfile.name);
+    return mutableFetchResults;
+    //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
+    mutableFetchResults = nil;
 }
 
 //управление перечнем языков

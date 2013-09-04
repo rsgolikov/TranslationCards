@@ -30,7 +30,6 @@
 - (void)delProfile:(TCProfileModel*)profile;
 - (void)updateProfile:(TCProfileModel*)profile;
 - (void)setCurrentProfile:(TCProfileModel*)profile;
-- (void)setDefaultProfileSettings:(TCProfileModel*)profile;
 - (NSArray*)getProfiles;
 
 //управление словарями
