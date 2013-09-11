@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TCRootViewController : UIViewController <UIPageViewControllerDelegate>
+@interface TCBackgroundViewController : UIViewController <UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 

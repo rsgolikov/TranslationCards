@@ -15,6 +15,7 @@
 		84B83B0617D4E7E400E754AD /* TCProfileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0517D4E7E400E754AD /* TCProfileModel.m */; };
 		84B83B0917D4E7E400E754AD /* TCWordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0817D4E7E400E754AD /* TCWordsModel.m */; };
 		84B83B0C17D4E7E400E754AD /* TCDictionariesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B83B0B17D4E7E400E754AD /* TCDictionariesModel.m */; };
+		A271E60217E0749A003DB776 /* orange_fruit-background-wallpaper-Free.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A271E60117E0749A003DB776 /* orange_fruit-background-wallpaper-Free.jpg */; };
 		D0A95EAF17CF533B000E54AC /* To-Do in Resources */ = {isa = PBXBuildFile; fileRef = D0A95EAE17CF533B000E54AC /* To-Do */; };
 		D0FDD6F117CE01C300C7D4F4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */; };
 		D0FDD6F317CE01C300C7D4F4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FDD6F217CE01C300C7D4F4 /* Foundation.framework */; };
@@ -25,7 +26,7 @@
 		D0FDD70317CE01C300C7D4F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FDD70217CE01C300C7D4F4 /* Default.png */; };
 		D0FDD70517CE01C300C7D4F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FDD70417CE01C300C7D4F4 /* Default@2x.png */; };
 		D0FDD70717CE01C300C7D4F4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0FDD70617CE01C300C7D4F4 /* Default-568h@2x.png */; };
-		D0FDD70A17CE01C300C7D4F4 /* TCRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDD70917CE01C300C7D4F4 /* TCRootViewController.m */; };
+		D0FDD70A17CE01C300C7D4F4 /* TCBackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDD70917CE01C300C7D4F4 /* TCBackgroundViewController.m */; };
 		D0FDD70D17CE01C300C7D4F4 /* TCDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDD70C17CE01C300C7D4F4 /* TCDataViewController.m */; };
 		D0FDD71017CE01C300C7D4F4 /* TCModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FDD70F17CE01C300C7D4F4 /* TCModelController.m */; };
 		D0FDD71317CE01C300C7D4F4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0FDD71117CE01C300C7D4F4 /* MainStoryboard_iPhone.storyboard */; };
@@ -62,6 +63,7 @@
 		84B83B0817D4E7E400E754AD /* TCWordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWordsModel.m; sourceTree = "<group>"; };
 		84B83B0A17D4E7E400E754AD /* TCDictionariesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCDictionariesModel.h; sourceTree = "<group>"; };
 		84B83B0B17D4E7E400E754AD /* TCDictionariesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCDictionariesModel.m; sourceTree = "<group>"; };
+		A271E60117E0749A003DB776 /* orange_fruit-background-wallpaper-Free.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "orange_fruit-background-wallpaper-Free.jpg"; sourceTree = "<group>"; };
 		D0A95EAE17CF533B000E54AC /* To-Do */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "To-Do"; sourceTree = SOURCE_ROOT; };
 		D0FDD6ED17CE01C300C7D4F4 /* TranslationCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TranslationCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FDD6F017CE01C300C7D4F4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -76,8 +78,8 @@
 		D0FDD70217CE01C300C7D4F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D0FDD70417CE01C300C7D4F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D0FDD70617CE01C300C7D4F4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D0FDD70817CE01C300C7D4F4 /* TCRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCRootViewController.h; sourceTree = "<group>"; };
-		D0FDD70917CE01C300C7D4F4 /* TCRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCRootViewController.m; sourceTree = "<group>"; };
+		D0FDD70817CE01C300C7D4F4 /* TCBackgroundViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCBackgroundViewController.h; sourceTree = "<group>"; };
+		D0FDD70917CE01C300C7D4F4 /* TCBackgroundViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCBackgroundViewController.m; sourceTree = "<group>"; };
 		D0FDD70B17CE01C300C7D4F4 /* TCDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCDataViewController.h; sourceTree = "<group>"; };
 		D0FDD70C17CE01C300C7D4F4 /* TCDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCDataViewController.m; sourceTree = "<group>"; };
 		D0FDD70E17CE01C300C7D4F4 /* TCModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCModelController.h; sourceTree = "<group>"; };
@@ -175,8 +177,8 @@
 				8432490617CE659400E26173 /* TCDBController.m */,
 				D0FDD6FF17CE01C300C7D4F4 /* TCAppDelegate.h */,
 				D0FDD70017CE01C300C7D4F4 /* TCAppDelegate.m */,
-				D0FDD70817CE01C300C7D4F4 /* TCRootViewController.h */,
-				D0FDD70917CE01C300C7D4F4 /* TCRootViewController.m */,
+				D0FDD70817CE01C300C7D4F4 /* TCBackgroundViewController.h */,
+				D0FDD70917CE01C300C7D4F4 /* TCBackgroundViewController.m */,
 				D0FDD70B17CE01C300C7D4F4 /* TCDataViewController.h */,
 				D0FDD70C17CE01C300C7D4F4 /* TCDataViewController.m */,
 				D0FDD70E17CE01C300C7D4F4 /* TCModelController.h */,
@@ -195,6 +197,7 @@
 				D0FDD6F917CE01C300C7D4F4 /* InfoPlist.strings */,
 				D0FDD6FC17CE01C300C7D4F4 /* main.m */,
 				D0FDD6FE17CE01C300C7D4F4 /* TranslationCards-Prefix.pch */,
+				A271E60117E0749A003DB776 /* orange_fruit-background-wallpaper-Free.jpg */,
 				D0FDD70217CE01C300C7D4F4 /* Default.png */,
 				D0FDD70417CE01C300C7D4F4 /* Default@2x.png */,
 				D0FDD70617CE01C300C7D4F4 /* Default-568h@2x.png */,
@@ -300,6 +303,7 @@
 				D0FDD71317CE01C300C7D4F4 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D0FDD71617CE01C300C7D4F4 /* MainStoryboard_iPad.storyboard in Resources */,
 				D0A95EAF17CF533B000E54AC /* To-Do in Resources */,
+				A271E60217E0749A003DB776 /* orange_fruit-background-wallpaper-Free.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +340,7 @@
 			files = (
 				D0FDD6FD17CE01C300C7D4F4 /* main.m in Sources */,
 				D0FDD70117CE01C300C7D4F4 /* TCAppDelegate.m in Sources */,
-				D0FDD70A17CE01C300C7D4F4 /* TCRootViewController.m in Sources */,
+				D0FDD70A17CE01C300C7D4F4 /* TCBackgroundViewController.m in Sources */,
 				D0FDD70D17CE01C300C7D4F4 /* TCDataViewController.m in Sources */,
 				D0FDD71017CE01C300C7D4F4 /* TCModelController.m in Sources */,
 				8432490417CE5FAC00E26173 /* TCData.xcdatamodeld in Sources */,
