@@ -42,13 +42,13 @@
 //управление перечнем языков
 - (void)addLanguage:(NSString*)name;
 - (void)delLanguage:(TCLanguagesModel*)language;
-- (void)updateLanguage:(TCLanguagesModel*)language;
+- (void)updateLanguage:(TCLanguagesModel*)language withNewName:(NSString*)newName;
 - (NSArray*)getLanguages;
 
 //управление перечнем слов
-- (void)addWord:(NSString*)word withTranslate:(NSString*)translate withOtherForms:(NSString*)form;
+- (void)addWord:(NSString*)name withTranslation:(NSString*)translation withOtherForms:(NSString*)otherForm;
 - (void)delWord:(TCWordsModel*)word;
-- (void)updateWord:(TCWordsModel*)word;
+- (void)updateWord:(TCWordsModel*)word withName:(NSString*)name withTranslation:(NSString*)translation withOtherForms:(NSString*)otherForms;
 - (NSArray*)getWords;
 
 @end

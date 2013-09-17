@@ -52,6 +52,12 @@
    
     TCDBController *tcdbc = [[TCDBController alloc] init];
     [tcdbc addProfile:@"onemore"];
+    [tcdbc addDictionary:@"one"];
+    [tcdbc addDictionary:@"two"];
+    [tcdbc addDictionary:@"one"];
+    [tcdbc addWord:@"one" withTranslation:@"два" withOtherForms:@""];
+    [tcdbc addWord:@"one" withTranslation:@"один" withOtherForms:@""];
+   
     NSMutableArray *arr = [tcdbc getProfiles];
     
 }
