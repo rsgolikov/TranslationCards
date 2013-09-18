@@ -34,6 +34,7 @@
     }
   }
 }
+
 @synthesize isCurrent = _isCurrent;
 @dynamic name;
 @dynamic dictionaries;
