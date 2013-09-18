@@ -58,7 +58,7 @@
     [tcdbc addWord:@"one" withTranslation:@"два" withOtherForms:@""];
     [tcdbc addWord:@"one" withTranslation:@"один" withOtherForms:@""];
    
-    NSMutableArray *arr = [tcdbc getProfiles];
+    NSArray *arr = [tcdbc getProfiles];
     
 }
 
