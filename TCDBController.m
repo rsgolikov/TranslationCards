@@ -181,14 +181,14 @@
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     [request setSortDescriptors:sortDescriptors];
     NSError *error = nil;
-    NSMutableArray *mutableFetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] mutableCopy];
-    if (mutableFetchResults == nil) {
+    NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if (fetchResults == nil) {
         // Handle the error.
     }
-    NSLog(@"Profile count: %d", mutableFetchResults.count);
-    return mutableFetchResults;
+    NSLog(@"Profile count: %d", fetchResults.count);
+    return fetchResults;
     //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
-    mutableFetchResults = nil;
+    fetchResults = nil;
 }
 
 //управление словарями
