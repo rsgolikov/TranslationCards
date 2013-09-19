@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 SS United. All rights reserved.
 //
 
-#import "TCRootViewController.h"
+#import "TCBackgroundViewController.h"
 
 #import "TCModelController.h"
 
 #import "TCDataViewController.h"
 #import "TCDBController.h"
 
-@interface TCRootViewController ()
+@interface TCBackgroundViewController ()
 @property (readonly, strong, nonatomic) TCModelController *modelController;
 @end
 
-@implementation TCRootViewController
+@implementation TCBackgroundViewController
 
 @synthesize modelController = _modelController;
 
@@ -58,7 +58,7 @@
     [tcdbc addWord:@"one" withTranslation:@"два" withOtherForms:@""];
     [tcdbc addWord:@"one" withTranslation:@"один" withOtherForms:@""];
    
-    NSMutableArray *arr = [tcdbc getProfiles];
+    NSArray *arr = [tcdbc getProfiles];
     
 }
 
