@@ -25,6 +25,11 @@
 @property (nonatomic, retain) TCProfileModel *currentProfile;
 @property (nonatomic, retain) TCDictionariesModel *currentDictionary;
 
+- (void) delAll;
+- (NSArray*) getAllDictionaries;
+- (NSArray*) getAllWords;
+- (TCWordsModel*)getLastWord;
+
 //управление профилем
 - (void)addProfile:(NSString *)name;
 - (void)delProfile:(TCProfileModel*)profile;

@@ -49,17 +49,6 @@
 
     // Add the page view controller's gesture recognizers to the book view controller's view so that the gestures are started more easily.
     self.view.gestureRecognizers = self.pageViewController.gestureRecognizers;
-   
-    TCDBController *tcdbc = [[TCDBController alloc] init];
-    [tcdbc addProfile:@"onemore"];
-    [tcdbc addDictionary:@"one"];
-    [tcdbc addDictionary:@"two"];
-    [tcdbc addDictionary:@"one"];
-    [tcdbc addWord:@"one" withTranslation:@"два" withOtherForms:@""];
-    [tcdbc addWord:@"one" withTranslation:@"один" withOtherForms:@""];
-   
-    NSArray *arr = [tcdbc getProfiles];
-    
 }
 
 - (void)didReceiveMemoryWarning

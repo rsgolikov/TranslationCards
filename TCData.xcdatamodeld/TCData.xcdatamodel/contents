@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Dictionaries" representedClassName="TCDictionariesModel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="originalLanguage" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Languages" inverseName="dcitionaryorigin" inverseEntity="Languages" syncable="YES"/>
         <relationship name="profile" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Profiles" inverseName="dictionaries" inverseEntity="Profiles" syncable="YES"/>
         <relationship name="translationLanguage" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Languages" inverseName="dictionarytranslate" inverseEntity="Languages" syncable="YES"/>
-        <relationship name="words" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Words" inverseName="dictionary" inverseEntity="Words" syncable="YES"/>
+        <relationship name="words" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Words" inverseName="dictionary" inverseEntity="Words" syncable="YES"/>
     </entity>
     <entity name="Languages" representedClassName="TCLanguagesModel" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,7 +15,7 @@
     <entity name="Profiles" representedClassName="TCProfileModel" syncable="YES">
         <attribute name="isCurrent" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dictionaries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="profile" inverseEntity="Dictionaries" syncable="YES"/>
+        <relationship name="dictionaries" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dictionaries" inverseName="profile" inverseEntity="Dictionaries" syncable="YES"/>
     </entity>
     <entity name="Words" representedClassName="TCWordsModel" syncable="YES">
         <attribute name="countShows" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -26,9 +26,9 @@
         <relationship name="dictionary" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dictionaries" inverseName="words" inverseEntity="Dictionaries" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dictionaries" positionX="36" positionY="234" width="128" height="118"/>
+        <element name="Dictionaries" positionX="36" positionY="234" width="128" height="120"/>
         <element name="Languages" positionX="135" positionY="-18" width="128" height="88"/>
-        <element name="Profiles" positionX="-65" positionY="-36" width="128" height="88"/>
-        <element name="Words" positionX="-270" positionY="9" width="128" height="133"/>
+        <element name="Profiles" positionX="-65" positionY="-36" width="128" height="90"/>
+        <element name="Words" positionX="-270" positionY="9" width="128" height="135"/>
     </elements>
 </model>

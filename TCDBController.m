@@ -29,7 +29,6 @@
         [request setPredicate:fetchPredicate];
         NSError *error = nil;
         _currentProfile = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
-        NSLog(@"Current profile: %@", _currentProfile.name);
         entity = nil;
         fetchPredicate = nil;
         entity = [NSEntityDescription entityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
@@ -39,7 +38,6 @@
         error = nil;
         //последний словарь текущим..
         _currentDictionary = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
-        NSLog(@"Current dictionary: %@", _currentDictionary.name);
      }
     return self;
 }
@@ -83,6 +81,57 @@
     return basePath;
 }
 
+//удалить все..
+- (void) delAll{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    for (TCProfileModel *obj in fetchResults) {
+        [[self managedObjectContext] deleteObject:obj];
+    }
+    entity = [NSEntityDescription entityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    for (TCDictionariesModel *obj in fetchResults) {
+        [[self managedObjectContext] deleteObject:obj];
+    }
+    entity = [NSEntityDescription entityForName:@"Words" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    for (TCWordsModel *obj in fetchResults) {
+        [[self managedObjectContext] deleteObject:obj];
+    }
+    entity = [NSEntityDescription entityForName:@"Languages" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    for (TCLanguagesModel *obj in fetchResults) {
+        [[self managedObjectContext] deleteObject:obj];
+    }
+     if (![[self managedObjectContext] save:&error]) {
+        // Handle the error.
+    }
+}
+- (NSArray*) getAllDictionaries{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Dictionaries" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    return fetchResults;
+    
+}
+- (NSArray*) getAllWords{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Words" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchResults = [self.managedObjectContext executeFetchRequest:request error:&error];
+    return fetchResults;
+    
+}
+
 //управление профилем
 //однинаковые имена = один профиль. соответственно при добавлении имени проверяем на наличие и выдаем или профиль или nil 
 - (TCProfileModel*)getProfileWithName:(NSString *)name{
@@ -98,6 +147,7 @@
 }
 //собственно добавление профиля
 - (void)addProfile:(NSString *)name{
+    if (name==nil || [name isEqual:@""]) {return;}
     TCProfileModel *profile=[self getProfileWithName:name];
     if (profile==nil){
         TCProfileModel *tcpfm = (TCProfileModel*)[NSEntityDescription insertNewObjectForEntityForName:@"Profiles" inManagedObjectContext:[self managedObjectContext]];
@@ -107,27 +157,32 @@
         NSError *error = nil;
         if (![[self managedObjectContext] save:&error]) {
             // Handle the error.
-            NSLog(@"Profile add error: %@", error);
         }
-        NSLog(@"Profile add: %@", name);
     } else {
-        NSLog(@"Profile name %@ found one", name);
     }
 }
 
 - (void)delProfile:(TCProfileModel*)profile{
+    if (profile==nil) {return;}
     //переделать на уделение по имени
     [[self managedObjectContext] deleteObject:profile];
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
         // Handle the error.
     }
+    NSArray *arr= [self getProfiles];
+    if ([arr count]==0) {_currentProfile = nil;} else {_currentProfile = [arr lastObject];}
 
 }
 
 - (void)updateProfile:(TCProfileModel*)profile{
+    if (profile==nil || [profile.name isEqual:@""]) {return;}//пустым не обновляем
+    TCProfileModel *profileWithSameName=[self getProfileWithName:profile.name];
+    if (profileWithSameName!=nil){
+        //what except must be trow??
+        return;
+    }
     //обновление только текущего профиля или нужно передавать два профиля в процедуру/ не нужно только текущего/
-    if (_currentProfile == nil) return;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Profiles"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -185,10 +240,12 @@
     if (fetchResults == nil) {
         // Handle the error.
     }
-    NSLog(@"Profile count: %d", fetchResults.count);
     return fetchResults;
-    //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
     fetchResults = nil;
+}
+
+- (TCProfileModel*)getCurrentProfile{
+    return _currentProfile;
 }
 
 //управление словарями
@@ -207,6 +264,7 @@
 }
 
 - (void)addDictionary:(NSString*)name{
+    if (name==nil || [name isEqual:@""]) {return;}
     //не может быть
     if (_currentProfile == nil) return;
     TCDictionariesModel *dictionary=[self getDictionaryWithName:name];
@@ -218,22 +276,33 @@
         NSError *error = nil;
         if (![[self managedObjectContext] save:&error]) {
             // Handle the error.
-            NSLog(@"Dictionary add error: %@", error);
         }
-        NSLog(@"Dictionary add: %@", name);
     } else {
-        NSLog(@"Dictionary name %@ found one", name);
-    }
+     }
 }
 - (void)delDictionary:(TCDictionariesModel*)dictionary{
+    if (dictionary==nil){return;}//пустой не удаляем
     //переделать на уделение по имени
     [[self managedObjectContext] deleteObject:dictionary];
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
         // Handle the error.
     }
+    NSArray *arr= [self getDictionaries];
+    if ([arr count]==0) {_currentDictionary = nil;} else {_currentDictionary = [arr lastObject];}
 }
 - (void)updateDictionary:(TCDictionariesModel*)dictionary{
+    if (dictionary==nil) {return;}//пустым не обновляем
+    if (_currentDictionary == nil) { //если текущий не выбран, значит словарей нет, значит не обновляем а добавляем
+        [self addDictionary:dictionary.name];
+        return;
+    }
+    TCDictionariesModel *dictionaryWithSameName=[self getDictionaryWithName:dictionary.name];
+    if (dictionaryWithSameName!=nil){
+        //what except must be trow??
+        return;
+    }
+
     //обновление только текущего словаря или нужно передавать два словаря в процедуру/ не нужно только текущего/
     if (_currentProfile == nil) return;
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
@@ -279,11 +348,15 @@
     if (mutableFetchResults == nil) {
         // Handle the error.
     }
-    NSLog(@"Dictionaries count: %d of profile name %@", mutableFetchResults.count, _currentProfile.name);
     return mutableFetchResults;
     //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
     mutableFetchResults = nil;
 }
+
+- (TCDictionariesModel*)getCurrentDictionary{
+    return _currentDictionary;
+}
+
 
 //управление перечнем языков
 
@@ -308,15 +381,13 @@
         NSError *error = nil;
         if (![[self managedObjectContext] save:&error]) {
             // Handle the error.
-            NSLog(@"Language add error: %@", error);
         }
-        NSLog(@"Language add: %@", name);
     } else {
-        NSLog(@"Language name %@ found one", name);
     }
     
 }
 - (void)delLanguage:(TCLanguagesModel*)language{
+    if (language==nil) {return;}
     //переделать на уделение по имени
     [[self managedObjectContext] deleteObject:language];
     NSError *error = nil;
@@ -325,6 +396,7 @@
     }
 }
 - (void)updateLanguage:(TCLanguagesModel*)language withNewName:(NSString*)newName{
+    if  (language==nil || newName==nil) {return;}
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Languages"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -356,7 +428,6 @@
     if (mutableFetchResults == nil) {
         // Handle the error.
     }
-    NSLog(@"Languages count: %d ", mutableFetchResults.count);
     return mutableFetchResults;
     //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
     mutableFetchResults = nil;
@@ -389,16 +460,14 @@
         NSError *error = nil;
         if (![[self managedObjectContext] save:&error]) {
             // Handle the error.
-            NSLog(@"Word add error: %@", error);
         }
-        NSLog(@"Word add: %@", name);
     } else {
         //just update isMastered (and update word??)
         [self updateWord:word withName:name withTranslation:translation withOtherForms:otherForm];
-        NSLog(@"Word name %@ found one. updated", name);
     }
 }
 - (void)delWord:(TCWordsModel*)word{
+    if (word==nil){return;}
     [[self managedObjectContext] deleteObject:word];
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
@@ -406,6 +475,7 @@
     }
 }
 - (void)updateWord:(TCWordsModel*)word withName:(NSString*)name withTranslation:(NSString*)translation withOtherForms:(NSString*)otherForms{
+    if (word==nil||name==nil||translation==nil){return;}
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Words"
                                               inManagedObjectContext:self.managedObjectContext];
@@ -443,10 +513,19 @@
     if (mutableFetchResults == nil) {
         // Handle the error.
     }
-    NSLog(@"Word count: %d of dictionary name %@", mutableFetchResults.count, _currentDictionary.name);
     return mutableFetchResults;
     //[[NSArray alloc] initWithArray:mutableFetchResults copyItems:TRUE];
     mutableFetchResults = nil;
+}
+- (TCWordsModel*)getLastWord{
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Words" inManagedObjectContext:[self managedObjectContext]];
+    [request setEntity:entity];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"dictionary = %@", _currentDictionary];
+    [request setPredicate:pred];
+    NSError *error = nil;
+    TCWordsModel *FetchResults = [[self.managedObjectContext executeFetchRequest:request error:&error] lastObject];
+    return FetchResults;
 }
 
 
